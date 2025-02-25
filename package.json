@@ -8,8 +8,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.cjs,.mjs,.vue --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "sass": "^1.69.7",
-    "vite": "^5.0.11"
+    "sass": "^1.69.7"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^5.0.1",

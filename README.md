@@ -28,7 +28,6 @@ docker compose build
 ### Installation des dépendances
 ```bash
 docker compose run --rm php composer install
-docker compose run --rm vite npm install
 ```
 
 ## Demarrage du serveur de dev local
