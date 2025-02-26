@@ -3,5 +3,12 @@
 {% block title %}La categ est la!{% endblock %}
 
 {% block body %}
-{{ dump(series) }}
-{% endblock %}
+    {% for serie in series %}
+        <h3>{{ serie['name']}}</h3>
+        <h3>{{ serie['plot']}}</h3>
+        <h3>{{ serie['cast']}}</h3>
+        <h3>{{ serie['director']}}</h3>
+        <h3>{{ serie['genre']}}</h3>
+        <h3>{{ serie['rating_5based']}}</h3>
+        <img src="{{ serie['cover']}}">
+    {% endfor %}{% endblock %}
