@@ -1,1 +1,16 @@
 @import "tailwindcss";
+@import 'animate.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+    .montserrat{
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.rajdhani{
+    font-family: "Rajdhani", serif;
+    font-weight: 500;
+    font-style: normal;
+}

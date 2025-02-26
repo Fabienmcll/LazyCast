@@ -3,8 +3,16 @@
 {% block title %}Categories de séries!{% endblock %}
 
 {% block body %}
-<h1>Categories de séries</h1>
-{% for categorie in series_categories %}
-    {{ dump(categorie['category_name']) }}
-{% endfor %}
+    <div class="bg-gray-900 text-white min-h-screen flex flex-col justify-center montserrat">
+        <div class="mb-8 mt-12">
+            <h1 class="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Catégories de Séries</h1>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-4 mb-6 mt-6 rajdhani">
+            {% for categorie in series_categories %}
+                <button class="cursor-pointer bg-gray-800 p-6 rounded-xl transition transform hover:bg-gray-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 shadow-lg">
+                    <span class="text-xl font-semibold">{{ categorie['category_name'] }}</span>
+                </button>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

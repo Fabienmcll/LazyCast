@@ -22,13 +22,12 @@ class SeriesCategoriesController extends AbstractController
     public function index(): Response
     {
         $json = $this->fetchVodStreams();
-        dump($json);
         $toSend = $json->getContent();
         $toSend = json_decode($toSend, true);
 
         return $this->render('series_categories/index.html.twig', [
             'controller_name' => 'SeriesCategoriesController',
-            'series_categories' => $toSend, 
+            'series_categories' => $toSend,
         ]);
     }
 
