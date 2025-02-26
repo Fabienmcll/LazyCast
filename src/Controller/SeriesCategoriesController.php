@@ -38,7 +38,7 @@ class SeriesCategoriesController extends AbstractController
             $serverUrl = $_SESSION['server_url'];
             $username = $_SESSION['username'];
             $password = $_SESSION['password'];
-            $this->vodApiService->setAction('get_vod_categories');
+            $this->vodApiService->setAction('get_series_categories');
             $this->vodApiService->setApiUrl($serverUrl);
             $this->vodApiService->setUsername($username);
             $this->vodApiService->setPassword($password);

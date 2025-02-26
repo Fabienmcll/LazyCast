@@ -24,11 +24,7 @@ class HomeController extends AbstractController
             $_SESSION['password'] = $password;
             $_SESSION['server_url'] = $serverUrl . '/player_api.php';
 
-            return $this->render('home/index.html.twig', [
-                'controller_name' => 'HomeController',
-                'username' => $username,
-                'server_url' => $serverUrl,
-            ]);
+            return $this->redirectToRoute('app_series_categories');
         }
 
         return $this->render('home/index.html.twig', [

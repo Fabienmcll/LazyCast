@@ -7,10 +7,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class XtreamApiService
 {
     private HttpClientInterface $client;
-    private string $apiUrl = "http://365hub.cc:2103/player_api.php";
-    private string $username = "aFAChxw1";
-    private string $password = "crjkQz2";
-    private string $action = "get_vod_streams";
+    private string $apiUrl;
+    private string $username;
+    private string $password;
+    private string $action;
+    private string $categoryId;
 
     public function setAction(string $action): void
     {
@@ -48,6 +49,32 @@ class XtreamApiService
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
+    }
+
+    public function setCategoryId(string $categoryId): void
+    {
+        $this->categoryId = $categoryId;
+    }
+    public function getCategoryId(): string
+    {
+        return $this->categoryId;
+    }
+
+    public function getWithCategoryId(int $categ_id): array
+    {
+        $url=$this->apiUrl . '?username=' . $this->username . "&password=" . $this->password . "&action=" . $this->action . "&category_id=" . $categ_id;
+        $response = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw new \Exception("Erreur API : " . $response->getStatusCode());
+        }
+
+        return $response->toArray();
     }
 
     public function getVodStreams(): array
