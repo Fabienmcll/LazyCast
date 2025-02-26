@@ -60,6 +60,23 @@ class XtreamApiService
         return $this->categoryId;
     }
 
+    public function getAllSeries(): array
+    {
+        $url=$this->apiUrl . '?username=' . $this->username . "&password=" . $this->password . "&action=" . $this->action;
+        $response = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Accept' => 'application/json',
+            ]
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw new \Exception("Erreur API : " . $response->getStatusCode());
+        }
+
+        return $response->toArray();
+    }
+
     public function getWithCategoryId(int $categ_id): array
     {
         $url=$this->apiUrl . '?username=' . $this->username . "&password=" . $this->password . "&action=" . $this->action . "&category_id=" . $categ_id;

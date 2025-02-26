@@ -40,7 +40,15 @@ class ShowSeriesCategoryController extends AbstractController
     public function getSeriesByCategory(int $category_id): JsonResponse
     {
 
-        $series = $this->vodApiService->getWithCategoryId($category_id);
-        return $this->json($series);
+        if($category_id == 1){
+            $this->vodApiService->setAction('get_series');
+            $series = $this->vodApiService->getAllSeries();
+            return $this->json($series);
+        } else {
+            $series = $this->vodApiService->getWithCategoryId($category_id);
+            return $this->json($series);
+        }
+
+        
     }
 }
