@@ -11,6 +11,7 @@ class IPTVSeriesControlelrController extends AbstractController
     #[Route('/iptvseries', name: 'app_i_p_t_v_series_controlelr')]
     public function index(): Response
     {
+        
         return $this->render('iptv_series_controlelr/index.html.twig', [
             'controller_name' => 'IPTVSeriesControlelrController',
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\GlobalVariableService;
 use App\Service\XtreamApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,10 +35,14 @@ class SeriesCategoriesController extends AbstractController
     public function fetchVodStreams(): JsonResponse
     {
         try {
+            session_start();
+            $serverUrl = $_SESSION['server_url'];
+            $username = $_SESSION['username'];
+            $password = $_SESSION['password'];
             $this->vodApiService->setAction('get_vod_categories');
-            $this->vodApiService->setApiUrl('http://365hub.cc:2103/player_api.php');
-            $this->vodApiService->setUsername('aFAChxw1');
-            $this->vodApiService->setPassword('crjkQz2');
+            $this->vodApiService->setApiUrl($serverUrl);
+            $this->vodApiService->setUsername($username);
+            $this->vodApiService->setPassword($password);
             $data = $this->vodApiService->getVodStreams();
 
             return $this->json($data);
