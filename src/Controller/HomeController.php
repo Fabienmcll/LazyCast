@@ -14,12 +14,16 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request): Response
     {
+        session_start();
+        if ($_SESSION['username']) {
+            return $this->redirectToRoute('app_home_menu');
+        }
         if ($request->isMethod('POST')) {
             $username = $request->request->get('username');
             $password = $request->request->get('password');
             $serverUrl = $request->request->get('server_url');
 
-            session_start();
+
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
             $_SESSION['server_url'] = $serverUrl . '/player_api.php';
