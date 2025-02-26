@@ -119,7 +119,7 @@
         },
         "files": [
             "assets/bootstrap.js",
-            "assets/controllers.json",
+            "assets/controllers.json"
         ]
     },
     "symfony/twig-bundle": {

@@ -1,4 +1,4 @@
-    import './bootstrap.js';
+
     import './styles/app.css';
 
     // eslint-disable-next-line no-console

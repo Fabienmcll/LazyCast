@@ -3,5 +3,8 @@
 {% block title %}Categories de séries!{% endblock %}
 
 {% block body %}
-{{ dump(series_categories) }}
+<h1>Categories de séries</h1>
+{% for categorie in series_categories %}
+    {{ dump(categorie['category_name']) }}
+{% endfor %}
 {% endblock %}

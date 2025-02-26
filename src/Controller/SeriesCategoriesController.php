@@ -20,13 +20,14 @@ class SeriesCategoriesController extends AbstractController
     #[Route('/series/categories', name: 'app_series_categories')]
     public function index(): Response
     {
-        // Appel de la fonction avec l'instance de service
         $json = $this->fetchVodStreams();
         dump($json);
+        $toSend = $json->getContent();
+        $toSend = json_decode($toSend, true);
 
         return $this->render('series_categories/index.html.twig', [
             'controller_name' => 'SeriesCategoriesController',
-            'series_categories' => $json->getContent(), // Envoyer les données au template
+            'series_categories' => $toSend, 
         ]);
     }
 
