@@ -69,6 +69,20 @@ class XtreamApiService
         return $this->categoryId;
     }
 
+    public function getEpisodesBySeason($datas, int $saison) : array
+    {
+        $episodes = [];
+        foreach ($datas['episodes'] as $data) {
+            foreach ($data as $episode) {
+                if ($episode['season'] == $saison) {
+                    array_push($episodes, $episode);
+                }
+            }
+        }
+        dump($episodes);
+        return $episodes;
+    }
+
     public function getSerieDetails(): array
     {
         $url = $this->apiUrl . '?username=' . $this->username . "&password=" . $this->password . "&action=" . $this->action . '&series_id=' . $this->serieId;

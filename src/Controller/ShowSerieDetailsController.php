@@ -16,8 +16,14 @@ class ShowSerieDetailsController extends AbstractController
         $this->vodApiService = $vodApiService;
     }
 
-    #[Route('/serie/{idSerie}', name: 'app_show_serie_details')]
-    public function index(int $idSerie): Response
+    private function getSerieDetails()
+    {
+        $serieDetail = $this->vodApiService->getSerieDetails();
+        return $this->json($serieDetail);
+    }
+
+    #[Route('/serie/{idSerie}/{seasonNumber}', name: 'app_show_season_episodes')]
+    public function indexSeason($idSerie, $seasonNumber): Response
     {
         session_start();
         $this->vodApiService->setApiUrl($_SESSION['server_url']);
@@ -29,16 +35,12 @@ class ShowSerieDetailsController extends AbstractController
         $toSend = $serieDetails->getContent();
         $toSend = json_decode($toSend, true);
 
-        dump($toSend);
+        $episodes = $this->vodApiService->getEpisodesBySeason($toSend, $seasonNumber);
 
         return $this->render('show_serie_details/index.html.twig', [
             'controller_name' => 'ShowSerieDetailsController',
+            'episodes' => $episodes,
             'serieDetails' => $toSend,
         ]);
-    }
-    private function getSerieDetails()
-    {
-        $serieDetail = $this->vodApiService->getSerieDetails();
-        return $this->json($serieDetail);
     }
 }
