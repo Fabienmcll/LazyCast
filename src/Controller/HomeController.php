@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(Request $request): Response
     {
         session_start();
-        if ($_SESSION['username']) {
+        if (isset($_SESSION['username'])) {
             return $this->redirectToRoute('app_home_menu');
         }
         if ($request->isMethod('POST')) {
