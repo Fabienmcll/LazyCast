@@ -43,5 +43,5 @@ Le bundle maker est installer dans le projet. Il permet de générer des fichier
 
 Commande pour voir la liste des make disponible
 ```bash
-docker compose run --rm php bin/console make
+docker compose run --rm php php bin/console make
 ```

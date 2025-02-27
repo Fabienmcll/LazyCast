@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlayerController!{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <div class="video-container video ng-isolate-scope" autoplay="autoplay" player="html5" url="/access/video.mkv" mimetype="video/x-matroska">
+    <video id="html5" src="http://365hub.cc:2103/{{ type }}/{{username}}/{{ password }}/{{id}}.mp4" type="video/x-matroska" controls=""></video>
+</div>
+{% endblock %}
