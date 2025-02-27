@@ -29,6 +29,20 @@ class ShowSeriesCategoryController extends AbstractController
         $this->vodApiService->setAction('get_series');
         $series = $this->getSeriesByCategory($category_id);
 
+        $this->vodApiService->setAction('get_series_categories');
+        $this->vodApiService->setApiUrl($_SESSION['server_url']);
+        $this->vodApiService->setUsername($_SESSION['username']);
+        $this->vodApiService->setPassword($_SESSION['password']);
+        $categories = $this->vodApiService->getVodStreams();
+
+        $category_name = "Toutes les séries";
+        foreach ($categories as $category) {
+            if ($category['category_id'] == $category_id) {
+                $category_name = $category['category_name'];
+                break;
+            }
+        }
+
         $toSend = $this->json($series);
 
         $toSend = $toSend->getContent();
@@ -38,6 +52,7 @@ class ShowSeriesCategoryController extends AbstractController
             'controller_name' => 'ShowSeriesCategoryController',
             'series' => $toSend,
             'category_id' => $category_id,
+            'category_name' => $category_name,
         ]);
     }
 
@@ -70,6 +85,20 @@ class ShowSeriesCategoryController extends AbstractController
         $this->vodApiService->setAction('get_series');
         $series = $this->getSeriesByCategory($category_id);
 
+        $this->vodApiService->setAction('get_series_categories');
+        $this->vodApiService->setApiUrl($_SESSION['server_url']);
+        $this->vodApiService->setUsername($_SESSION['username']);
+        $this->vodApiService->setPassword($_SESSION['password']);
+        $categories = $this->vodApiService->getVodStreams();
+
+        $category_name = "Toutes les séries";
+        foreach ($categories as $category) {
+            if ($category['category_id'] == $category_id) {
+                $category_name = $category['category_name'];
+                break;
+            }
+        }
+
         // Filtrer les résultats en fonction de la recherche (nom, genre, casting, etc.)
         $filteredSeries = array_filter($series, function ($serie) use ($query) {
             return stripos($serie['name'], $query) !== false;
@@ -79,6 +108,7 @@ class ShowSeriesCategoryController extends AbstractController
             'controller_name' => 'ShowSeriesCategoryController',
             'series' => $filteredSeries,
             'category_id' => $category_id,
+            'category_name' => $category_name,
         ]);
     }
 }
